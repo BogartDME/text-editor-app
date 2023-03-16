@@ -2,16 +2,10 @@ const butInstall = document.getElementById('buttonInstall');
 
 // Logic for installing the PWA
 window.addEventListener('beforeinstallprompt', (event) => {
-    event.preventDefault();
-    installBtn.style.visibility = 'visible';
-    textHeader.textContent = 'Click the button to install!';
-
-    installBtn.addEventListener('click', () => {
-    event.prompt();
-    installBtn.setAttribute('disabled', true);
-    installBtn.textContent = 'Installed!';
-    });
+    window.deferredPrompt = event;
+    butInstall.classList.toggle('hidden', false);
 });
+
 
 
 butInstall.addEventListener('click', async () => {
@@ -30,6 +24,6 @@ butInstall.addEventListener('click', async () => {
 
 
 window.addEventListener('appinstalled', (event) => {
-    textHeader.textContent = 'Successfully installed!';
+    window.deferredPrompt = null;
     console.log('👍', 'appinstalled', event);
 });
