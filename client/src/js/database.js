@@ -33,8 +33,8 @@ const initdb = async () =>
     console.log('result.value', result);
   
     console.log('🚀 - data saved to the database', result);
-    console.error('putDb not implemented');
-    return result;
+   // console.error('putDb not implemented');
+    return result?.value
   };
 
 
@@ -49,7 +49,7 @@ const initdb = async () =>
     
     //opens the desired object store
     const store = tx.objectStore('jate');
-    
+    console.log({content})
     //uses the put method to update data in the db
     const request = store.put({ id: 1, value: content });
     
@@ -57,6 +57,6 @@ const initdb = async () =>
     const result = await request;
     console.log('🚀 - data saved to the database', result);
     console.log('PUT to the database');
-    console.error('getDb not implemented');
+    //console.error('getDb not implemented');
 }
 initdb();
