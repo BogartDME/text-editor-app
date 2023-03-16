@@ -17,10 +17,10 @@ const initdb = async () =>
   export const getDb = async () =>{ 
 
   //creates a connection to the db and dictates which version to use
-  const jateDb = await openDB('jate', 1);
+  const contactDB = await openDB('jate', 1);
 
   //generates a new transaction- tells you which db and what are the data privileges
-  const tx = jateDb.transaction('jate', 'readonly');
+  const tx = contactDB.transaction('jate', 'readonly');
 
   //opens the desired object store
   const store = tx.objectStore('jate');
@@ -39,19 +39,19 @@ const initdb = async () =>
 
 
   
-  export const putDb = async (id, content) =>{ 
+  export const putDb = async (content) =>{ 
     
     //creates a connection to the db and dictates which version to use
-    const jateDb = await openDB('jate', 1);
+    const contactDB = await openDB('jate', 1);
     
     //generates a new transaction- tells you which db and what are the data privileges
-    const tx = jateDb.transaction('jate', 'readwrite');
+    const tx = contactDB.transaction('jate', 'readwrite');
     
     //opens the desired object store
     const store = tx.objectStore('jate');
     
     //uses the put method to update data in the db
-    const request = store.put({ id: 1, jate: content });
+    const request = store.put({ id: 1, value: content });
     
     //gets confirmation of the request
     const result = await request;
